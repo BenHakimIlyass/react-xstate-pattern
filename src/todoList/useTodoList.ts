@@ -7,7 +7,10 @@ export default () => {
     actions: {
       load: () => {
         axios.get("https://jsonplaceholder.typicode.com/todos/").then(res => {
-          send({ type: "RESOLVE", list: res.data });
+          send({
+            type: "RESOLVE",
+            list: res.data
+          });
         });
       }
     }
@@ -15,7 +18,10 @@ export default () => {
   const value = state.value;
   return [
     state.context.list,
-    { loading: value === "loading", success: value === "success" },
+    {
+      loading: value === "loading",
+      success: value === "success"
+    },
     () => send("GET_TODOS")
   ];
 };

@@ -8,6 +8,7 @@ interface States {
     idle: {};
     pending: {};
     success: {};
+    update: {};
   };
 }
 interface FetchContext {
@@ -25,9 +26,9 @@ const loginMachine = Machine<States, FetchContext>({
       entry: ["load"],
       on: {
         RESOLVE: {
-          target: "success",
+          target: "idle",
           actions: assign({
-            list: (context, event: any) => event.list
+            list: (context, event: any) => context.list.concat(event.list)
           })
         }
       }

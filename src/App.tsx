@@ -5,7 +5,8 @@ import useTodoListe from "./todoList/useTodoList";
 
 const App = () => {
   const [user, userStates, getUser] = useUser();
-  const [todo, todoStates, getTodos] = useTodoListe();
+  const [todo, todoStates, getTodos] = useTodoListe(true);
+  console.log(todoStates);
 
   return (
     <div>
@@ -19,8 +20,9 @@ const App = () => {
       <button onClick={getTodos}>Fetch</button>
       {todoStates.loading && <h1>Loading...</h1>}
       <ul>
-        {todoStates.success &&
-          todo.map((item, i) => <li key={i}>{item.title}</li>)}
+        {todo.map((item, i) => (
+          <li key={i}>{item.title}</li>
+        ))}
       </ul>
     </div>
   );
